@@ -59,7 +59,7 @@ def max_sub_set_sum_two(array):
 	# you can just copy this array and then override it
 	
 	print(numbers)
-    for idx in range(len(array)):
+	for idx in range(len(array)):
 		if idx == 0:
 			numbers[idx] = array[idx]
 		elif idx == 1:
@@ -98,3 +98,20 @@ def max_sub_sum_helper(array, idx, memorized):
 	memorized[idx] = cur_max_sum
 
 	return cur_max_sum
+
+# this is most optimal solution
+# time complexity: O(n)
+# space complexity: O(1)
+def slution_four(array):
+	if not len(array):
+		return 0
+	elif len(array) == 1:
+		return array[0]
+	
+	prev = array[0]
+	current = max(array[0], array[1])
+	for i in range(2, len(array)):
+		prev = current
+		current = max(current, array[i] + prev)
+	
+	return current
