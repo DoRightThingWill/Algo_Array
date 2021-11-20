@@ -5,6 +5,7 @@
 * Sliding Window
 * Double/Triple Pointers
 * Dynamic Programming
+<<<<<<< HEAD
 * Greedy
 ## Typical Array Problem
 
@@ -26,3 +27,6 @@ def produce_all_sets(array):
 * Two number sum: give an array of integers and an integer, called target. Return all possible sets of two elements from the input array, where the two elements sum up to the target. If no pair of elements meet the requirements, return an empty array.
 * Three number sum: 
 * Four number sum: 
+=======
+* Greedy
+>>>>>>> 38a78390fc98a65233ca8576c6099bb22729e2ff
