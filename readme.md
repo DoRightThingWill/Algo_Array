@@ -138,6 +138,47 @@ def swap(array, i, j):
 
 * Give a set of characters, return all strings that it could produce. For example, input set is ['a', 'b']. Then the output set could be '', 'a', 'b', 'ab', and 'ba'
 
+```python
+# [a, t, r, t, e, b, u], we have these letters
+# and a given dictionary to store all available words in English
+# you need to find which is the longest word that could be formed by the letters from the given collection
+
+# I modified this question.
+# Overall strategy is :
+# find all words that we could make from the letter collection
+# from long to short, for each word, check if it is in the dictionary
+# assume checking existence in the dict is O(1)
+
+def get_all_words(array, dict=0):
+    all_permutations = set()
+    get_permutations(array, 0, all_permutations)
+    return all_permutations
+def get_permutations(array, idx, all_permutations):
+    if idx == len(array):
+        # new_array = array[:]
+        # all_permutations.append(new_array)
+        return
+    
+    for i in range(idx, len(array)):
+        swap(array, idx, i)
+        new_arr = tuple(array[:idx + 1])
+        all_permutations.add(new_arr)
+        get_permutations(array, idx + 1, all_permutations)
+        swap(array, idx, i)
+
+def swap(array, i, j):
+    array[i], array[j] = array[j], array[i]
+
+array= [1,2,3,4,5,6,7]
+all_permu = get_all_words(array)
+print(all_permu)
+print('permu qty',len(all_permu))
+
+# by nature, this approach is same with making full permutations, except that, for this method, we need to make words by combining the letters from each node to the root node, rather than in the second method, where we only need to combine letters between root node and leaf nodes.
+
+
+
+```
 
 * Two number sum: give an array of integers and an integer, called target. Return all possible sets of two elements from the input array, where the two elements sum up to the target. If no pair of elements meet the requirements, return an empty array.
 * Three number sum: 
