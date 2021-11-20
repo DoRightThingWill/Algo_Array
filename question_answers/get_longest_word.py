@@ -10,7 +10,7 @@
 # build a trie structure.
 # 3. why do we not need to build this trie structure??
 # 4, when do we need to build this trie?
-def get_longest_word(array, dict=0):
+def get_all_words(array, dict=0):
     all_permutations = set()
     get_permutations(array, 0, all_permutations)
     return all_permutations
@@ -31,7 +31,7 @@ def swap(array, i, j):
     array[i], array[j] = array[j], array[i]
 
 array= [1,2,3,4,5,6,7]
-all_permu = get_longest_word(array)
+all_permu = get_all_words(array)
 print(all_permu)
 print('permu qty',len(all_permu))
 
