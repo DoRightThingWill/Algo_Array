@@ -216,22 +216,14 @@ def get_power_set_two(array):
 
 * Now it is the right time to make some comparison:
 
-    * find all ONE elements sub-sets
-    * find all TWO elements sub-sets
-    * find all THREE elements sub-sets
-    * find all FOUR elements sub-sets
+    * find all ONE, TWO, THREE, FOUR , ... elements sub-sets
         * loop. inner index over outside index by one
-    * ...
     * find all sub-sets (power set)
         * merger - conquer
 
 
-    * find all ONE elements sub-array
-    * find all TWO elements sub-array
-    * find all THREE elements sub-array
-    * find all FOUR elements sub-array
+    * find all ONE, TWO, THREE, FOUR, ... elements sub-array
         * loop, inner index not equal to outside index
-    * ...
     * find the full permutations
         * search a tree
     * find all sub-arrays
