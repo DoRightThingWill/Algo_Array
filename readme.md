@@ -40,14 +40,58 @@ def get_three_elements_subsets(array):
 # And, we could also use the same method to generate 4-elements subsets. 
 # To avoid duplicates, the key is make inner loop index always larger than parent loop index by ONE. This way, the iteration will never look back.
 # actually, 
-
-
 ```
 
 * Get a group of arrays. Each array contains two elements (different index) from the input array. 
+```python
+# since this is array, the order matters
+# [1,2,3]
+# [1,2] [2,1] [1,3] [3,1] [2,3] [3,2]
+def get_arrangements(array):
+    arrangement_list = []
+    for i in range(len(array)):
+        for j in range(len(array)):
+            if i != j:
+                arrangement_list.append([array[i], array[j]])
+    
+    return arrangement_list
+
+#time complexity is O(n^2). And space complexity is O(n^2)
+
+# similarly, we could get arrangements of 3 elements:
+
+def get_arrangements(array) :
+    arrangements = []
+
+    for i in range(len(array)):
+        for j in range(len(array)):
+            for k in range(len(array)):
+                x = array[i]
+                y = array[j]
+                z = array[k]
+                if i != j and j != k and i != k:
+                    arrangements.append([x,y,z])
+
+    return arrangements
+# it is easy to see the time complexity is O(n^3). And space complexity is O(n^3) too
+
+```
+Here, one important finding is: to generate a set, which means no duplicated index appear, like [array[1], array[2]], and [array[2], array[1]], we need to make sure: inner loop index is over outside loop index by ONE. This makes the loop never look back.
+
+While for arrangements or permutation, all loop iterates from head to end, skipping the same index.
+
+
 * Get all the permutation of the input array. 
+What if, we do not know the length of the input array and we need to make the full permutation? If the length is N, we need N level loops????
+
+```python
+
+```
+
+
 * Give a set of characters, return all strings that it could produce. For example, input set is ['a', 'b']. Then the output set could be '', 'a', 'b', 'ab', and 'ba'
+
+
 * Two number sum: give an array of integers and an integer, called target. Return all possible sets of two elements from the input array, where the two elements sum up to the target. If no pair of elements meet the requirements, return an empty array.
 * Three number sum: 
 * Four number sum: 
-
