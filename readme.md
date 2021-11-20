@@ -175,10 +175,67 @@ print(all_permu)
 print('permu qty',len(all_permu))
 
 # by nature, this approach is same with making full permutations, except that, for this method, we need to make words by combining the letters from each node to the root node, rather than in the second method, where we only need to combine letters between root node and leaf nodes.
+```
+
+* generate **power set**
+
+```python
+# consider a simple scenario:
+# power set of [1,2] is [[], [1], [2], [1,2]] (2^n elements)
+# if we have one extra element 3, how could we generate power set of [1,2,3] by using power set of [1,2] and [3]
+# right, we iterate the power set of [1,2], and for each list, we add 3, thus we make
+#[[], [3], [1], [1,3], [2], [2,3], [1,2], [1,2,3]]
+# we could implement this strategy in both recursive and iterative ways.
+
+def get_power_set_one(array, idx = len(array) -1):
+    power_sets =[[]]
+    if idx < 0:
+        # is the array is empty, the return the default power set
+        return [[]]
+    
+    val = array[idx]
+    power_sets = get_power_set_one(array, idx - 1)
+    for i in range(len(power_sets)):
+        power_set = power_sets[i]
+        power_sets.append(power_set + [val])
+    
+    return power_sets
 
 
+def get_power_set_two(array):
+    power_sets= [[]]
+
+    for i in range(len(array)):
+        for j in range(len(power_sets):
+            power_set =  power_sets[j]
+            power_sets.append(power_set + [array[i]])
+    
+    return power_set
 
 ```
+
+* Now it is the right time to make some comparison:
+
+    * find all ONE elements sub-sets
+    * find all TWO elements sub-sets
+    * find all THREE elements sub-sets
+    * find all FOUR elements sub-sets
+        * loop. inner index over outside index by one
+    * ...
+    * find all sub-sets (power set)
+        * merger - conquer
+
+
+    * find all ONE elements sub-array
+    * find all TWO elements sub-array
+    * find all THREE elements sub-array
+    * find all FOUR elements sub-array
+        * loop, inner index not equal to outside index
+    * ...
+    * find the full permutations
+        * search a tree
+    * find all sub-arrays
+        * search a tree (N branch tree)
 
 * Two number sum: give an array of integers and an integer, called target. Return all possible sets of two elements from the input array, where the two elements sum up to the target. If no pair of elements meet the requirements, return an empty array.
 * Three number sum: 
