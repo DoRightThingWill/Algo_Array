@@ -50,8 +50,4 @@ def get_three_elements_subsets(array):
 * Two number sum: give an array of integers and an integer, called target. Return all possible sets of two elements from the input array, where the two elements sum up to the target. If no pair of elements meet the requirements, return an empty array.
 * Three number sum: 
 * Four number sum: 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 944add495e9181a3576bdf0b2a110579401e19c2
