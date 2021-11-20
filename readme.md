@@ -73,21 +73,68 @@ def get_arrangements(array) :
                     arrangements.append([x,y,z])
 
     return arrangements
-# it is easy to see the time complexity is O(n^3). And space complexity is O(n^3) too
+# it is easy to see the time complexity is O(n^3). And space complexity is O(n^3) too. Here, one important finding is: to generate a set, which means no duplicated index appear, like [array[1], array[2]], and [array[2], array[1]], we need to make sure: inner loop index is over outside loop index by ONE. This makes the loop never look back.
+
+# While for arrangements or permutation, all loop iterates from head to end, skipping the same index.
 
 ```
-Here, one important finding is: to generate a set, which means no duplicated index appear, like [array[1], array[2]], and [array[2], array[1]], we need to make sure: inner loop index is over outside loop index by ONE. This makes the loop never look back.
 
-While for arrangements or permutation, all loop iterates from head to end, skipping the same index.
 
 
 * Get all the permutation of the input array. 
-What if, we do not know the length of the input array and we need to make the full permutation? If the length is N, we need N level loops????
+What if, we do not know the length of the input array and we need to make the full permutation? If the length is N, we need N level loops???? Of course. NO.
 
 ```python
+# N level loops sounds crazy. Recursion will save our life. 
+# Talk about recursion. We better look at it as a Tree (even a single line tree).
+# For example, the input array is [1,2,3]. Use a tree to simulate the process of making
+# permutations
+
+#                                     []
+#                                   /  |  \
+#                                 /    |    \
+#                                1     2     3
+#                              / | \
+#                             /  |   \
+#                            2   3
+#                           /    |
+#                          3    2
+
+# Oh, my god, ugly tree. Hope you could understand what I am doing.
+# The height of the tree is len(array). How many leaves we have? len(array) ! . Factorial
+def get_full_permutation(array):
+    rtn_list = []
+    # permutation = []
+    # permutation_helper(array, 0, rtn_list, permutation)
+    permutation_helper(array, 0, rtn_list)
+    return rtn_list
+
+# def permutation_helper(array, cur_idx, rtn_list, permutation):
+def permutation_helper(array, cur_idx, rtn_list):
+    # base case: reach the bottom of the recursion tree
+    # so here, cur_idx is the level of the recursion tree, and also the moving pointer
+    # of the input array
+
+    # we could use an extra list as the arrangement
+    # or we could simply switch values in place in the original array
+    if cur_idx == len(array):
+        new_arr = array[:]
+        rtn_list.append(new_arr)
+        return
+
+    for idx in range(cur_idx, len(array)):
+        # take this value
+        swap(array, idx, cur_idx)
+        permutation_helper(array, cur_idx + 1, rtn_list)
+
+        # take next value
+        # kick out the value you just added, and enter next iteration
+        swap(array, idx, cur_idx)
+
+def swap(array, i, j):
+    array[i], array[j] = array[j], array[i]
 
 ```
-
 
 * Give a set of characters, return all strings that it could produce. For example, input set is ['a', 'b']. Then the output set could be '', 'a', 'b', 'ab', and 'ba'
 
