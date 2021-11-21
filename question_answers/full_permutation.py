@@ -11,6 +11,9 @@ def permutation_helper(array, cur_idx, rtn_list):
     # base case: reach the bottom of the recursion tree
     # so here, cur_idx is the level of the recursion tree, and also the moving pointer
     # of the input array
+
+    # we could use an extra list as the arrangement
+    # or we could simply switch values in place in the original array
     if cur_idx == len(array):
         # permu_copy =  permutation[:]
         new_arr = array[:]
@@ -33,8 +36,6 @@ def permutation_helper(array, cur_idx, rtn_list):
 def swap(array, i, j):
     array[i], array[j] = array[j], array[i]
 
-# kick out the already-taken value
-# use idx to control the array range of values to be taken
 
 
 arr0 = [1,2]

@@ -11,3 +11,5 @@ array = [1,2,3,4,5]
 
 print(get_arrangements(array))
 print('len', len(get_arrangements(array)))
+
+
